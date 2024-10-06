@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package grpc_service;
+
+import "google/protobuf/empty.proto";
+
+message Data {
+    int64 RecordSeqNum = 1;
+    float Decimal1 = 2;
+    float Decimal2 = 3;
+    float Decimal3 = 4;
+    float Decimal4 = 5;
+    int64 RecordTimestamp = 6;
+}
+
+
+message Packet {
+    int64 PacketTimestamp = 1;
+    int64 PacketSeqNum = 2;
+    int32 NRecords = 3;
+    repeated Data PacketData = 4;
+}
+
+service DataService {
+    rpc SendPacket(Packet) returns (google.protobuf.Empty);
+}

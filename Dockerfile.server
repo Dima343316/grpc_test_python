@@ -1,0 +1,25 @@
+FROM python:3.9-slim
+
+ENV PYTHONUNBUFFERED=1
+
+# Устанавливаем рабочую директорию
+WORKDIR /grpc
+
+# Копируем файл зависимостей
+COPY requirements.txt .
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем весь проект в контейнер
+ADD ./server /grpc/
+
+
+# Устанавливаем PYTHONPATH
+ENV PYTHONPATH="/grpc_python_server"
+
+# Открываем порт 50051 для gRPC
+EXPOSE 50051
+
+# Запускаем сервер
+CMD ["python", "server/grpc_server.py"]

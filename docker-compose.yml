@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  grpc_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    environment:
+      - POSTGRES_USER=grpc_user
+      - POSTGRES_PASSWORD=grpc_password
+      - POSTGRES_NAME=grpc_db
+      - DB_HOST=postgres_db
+      - DB_PORT=5432
+    ports:
+      - "50051:50051"
+    depends_on:
+      - postgres_db
+    volumes:
+      - .:/grpc
+    networks:
+      - grpc_network
+
+  grpc_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    depends_on:
+      - grpc_server
+    networks:
+      - grpc_network
+
+  postgres_db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=constantine
+      - POSTGRES_PASSWORD=dox123456
+      - POSTGRES_DB=grpc_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - grpc_network
+
+networks:
+  grpc_network:
+    driver: bridge
+
+volumes:
+  pgdata:
