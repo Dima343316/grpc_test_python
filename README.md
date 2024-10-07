@@ -19,7 +19,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/Dima343316//grpc_python_server.git
+ git clone https://github.com/Dima343316/grpc_test_python.git
 cd grpc_python_server
 
 
