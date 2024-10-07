@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_USER=constantine
       - POSTGRES_PASSWORD=dox123456
-      - POSTGRES_NAME=grpc_db
+      - POSTGRES_DB=grpc_db  # Исправлено имя переменной
       - DB_HOST=postgres_db
       - DB_PORT=5432
     ports:
@@ -16,7 +16,7 @@ services:
     depends_on:
       - postgres_db
     volumes:
-      - .:/grpc
+      - .:/app  # Лучше уточнить путь
     networks:
       - grpc_network
 
@@ -28,6 +28,8 @@ services:
       - grpc_server
     networks:
       - grpc_network
+    entrypoint: >  # Добавляем ожидание сервера
+      sh -c 'while ! nc -z grpc_server 50051; do sleep 1; done; python client/client.py'
 
   postgres_db:
     image: postgres:13
