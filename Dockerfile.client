@@ -1,0 +1,22 @@
+FROM python:3.9-slim
+
+ENV PYTHONUNBUFFERED=1
+
+# Устанавливаем рабочую директорию
+WORKDIR /grpc
+
+# Копируем файл зависимостей
+COPY requirements.txt .
+
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем весь проект в контейнер
+ADD . .
+
+# Устанавливаем PYTHONPATH
+ENV PYTHONPATH="/grpc"
+
+# Запускаем клиента
+CMD ["python", "client/client.py"]
