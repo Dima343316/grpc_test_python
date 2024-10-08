@@ -16,7 +16,7 @@ services:
     depends_on:
       - postgres_db
     volumes:
-      - .:/app  
+      - .:/app
     networks:
       - grpc_network
     entrypoint: >
