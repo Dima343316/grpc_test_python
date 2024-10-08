@@ -8,9 +8,9 @@ services:
     environment:
       - POSTGRES_USER=constantine
       - POSTGRES_PASSWORD=dox123456
-      - POSTGRES_DB=grpc_db  # Исправлено имя переменной
+      - POSTGRES_DB=grpc_db
       - DB_HOST=postgres_db
-      - DB_PORT=5432
+      - DB_PORT=5432  # Оставляем стандартный порт
     ports:
       - "50051:50051"
     depends_on:
@@ -35,7 +35,7 @@ services:
       - grpc_server
     networks:
       - grpc_network
-    entrypoint: >  # Добавляем ожидание сервера
+    entrypoint: >
       sh -c 'while ! nc -z grpc_server 50051; do sleep 1; done; python client/client.py'
 
   postgres_db:
@@ -47,7 +47,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - "5432:5432"  # Внешний и внутренний порты совпадают
     networks:
       - grpc_network
 
