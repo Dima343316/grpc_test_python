@@ -20,7 +20,7 @@
 
 ```bash
  git clone https://github.com/Dima343316/grpc_test_python.git
-cd grpc_python_server
+cd grpc_test_python
 
 
 ### Установите зависимости для сервера и клиента из файла requirements.txt:
