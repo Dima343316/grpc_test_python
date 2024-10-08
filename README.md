@@ -43,14 +43,13 @@ python client/client.py
 
 1) открываем  проект командой - cd grpc_test_python;
 
-2) добавляем свой файл .env файл с данными бд в корень проекта
+2) добавляем файл .env в корень проекта вот с такими данными в бд
 
-ПРИМЕР:
-POSTGRES_PASSWORD=your_password
-POSTGRES_USER=your_user
-POSTGRES_NAME=your_name
-DB_HOST=localhost
-DB_PORT=5432
+POSTGRES_PASSWORD=dox123456
+POSTGRES_USER=constantine
+POSTGRES_NAME=grpc_db
+DB_HOST=postgres_db
+DB_PORT=5433
 
 3) вводим команду - docker-compose up --build 
 
