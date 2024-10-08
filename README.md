@@ -20,24 +20,9 @@
 
 ```bash
  git clone https://github.com/Dima343316/grpc_test_python.git
+
+##Открываем проект
 cd grpc_test_python
-
-
-### Установите зависимости для сервера и клиента из файла requirements.txt:
-
-pip install --no-cache-dir -r requirements.txt
-
- ## Если файлы grpc_service_pb2.py и grpc_service_pb2_grpc.py отсутствуют, сгенерируйте их с помощью grpcio-tools. Для этого выполните следующую команду:
-
-python -m grpc_tools.protoc -I./proto --python_out=./server --grpc_python_out=./server ./proto/grpc_service.proto
-
-##Запуск сервера 
-python server/grpc_server.py
-
-## Запуск клиента 
-python client/client.py
-
-
 
 ###Запуск с помощью Docker
 
