@@ -43,17 +43,9 @@ python client/client.py
 
 1) открываем  проект командой - cd grpc_test_python;
 
-2) добавляем файл .env в корень проекта вот с такими данными в бд
+2) вводим команду - docker-compose up --build 
 
-POSTGRES_PASSWORD=dox123456
-POSTGRES_USER=constantine
-POSTGRES_NAME=grpc_db
-DB_HOST=postgres_db
-DB_PORT=5433
-
-3) вводим команду - docker-compose up --build 
-
-4) Для того чтобы проверить данные в базе данных PostgreSQL, которая работает в Docker:
+3) Для того чтобы проверить данные в базе данных PostgreSQL, которая работает в Docker:
 
 1) Подключитесь к контейнеру PostgreSQL с помощью команды - docker exec -it <container_name_or_id> psql -U <username> -d <database_name>
 
